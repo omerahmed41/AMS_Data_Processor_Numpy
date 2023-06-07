@@ -1,3 +1,5 @@
+# pylint: disable=too-few-public-methods
+
 import math
 
 
@@ -7,7 +9,7 @@ class IOperation:
             return value
         try:
             return self.perform_operation(float(value))
-        except:
+        except (ValueError, ZeroDivisionError):
             return value
 
     def perform_operation(self, value):
@@ -48,15 +50,14 @@ class OperationFactory:
     def create(self, operation):
         if operation.lower() == "sum":
             return SumOperation()
-        elif operation.lower() == "division":
+        if operation.lower() == "division":
             return DivisionOperation()
-        elif operation.lower() == "multiplication":
+        if operation.lower() == "multiplication":
             return MultiplicationOperation()
-        elif operation.lower() == "square root":
+        if operation.lower() == "square root":
             return SquareRootOperation()
-        elif operation.lower() == "subtraction":
+        if operation.lower() == "subtraction":
             return SubtractionOperation()
-        elif operation.lower() == "natural logarithm":
+        if operation.lower() == "natural logarithm":
             return NaturalLogarithmOperation()
-        else:
-            raise ValueError("Invalid operation")
+        raise ValueError("Invalid operation")

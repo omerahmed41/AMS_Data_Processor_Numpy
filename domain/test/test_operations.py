@@ -23,4 +23,4 @@ def test_operation_factory_edge_cases():
 
 def test_invalid_formula():
     with pytest.raises(ValueError):
-        operation = OperationFactory().create("invalid_formula")
+        OperationFactory().create("invalid_formula")

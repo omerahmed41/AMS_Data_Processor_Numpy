@@ -1,5 +1,11 @@
-import numpy as np
+"""
+AMS Processor Module
+
+This module provides classes and functions for processing AMS files.
+
+"""
 import re
+import numpy as np
 
 
 class AMSProcessor:
