@@ -20,6 +20,9 @@ run `make test`
 ## run pre-commit with pylint and all  lints libs.
 run `pre-commit run --all-files`
 
+
+## Jenkins CI/CD pipline
+I added sample jenkins file to use it for pipline on Bitbuket for example.
 ## Usage
 
 To run the AMS Data Processor, use the following command-line syntax:
