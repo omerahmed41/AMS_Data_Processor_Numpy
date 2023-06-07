@@ -14,7 +14,6 @@ def test_operation_factory_edge_cases():
     assert operation(0) == 0  # Division by zero
     assert operation(-1) == "//-1.0//"  # Division by a negative number
     assert operation('inf') == 'inf'  # Division by infinity
-    # assert operation(float('inf')) == 'inf'  # Division by infinity
 
     operation = OperationFactory().create("Natural logarithm").apply
     assert operation(0) == 0  # Logarithm of zero
