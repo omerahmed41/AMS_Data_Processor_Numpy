@@ -14,7 +14,6 @@ class AMSProcessor:
 
         if not analyses_data:
             raise ValueError("No analysis records found in the 'analyses' section.")
-        analyses_data = analyses_data[:5]
         return analyses_data
 
     def parse_analyses_data(self, analyses_data):

@@ -21,4 +21,7 @@ class AMSFileReader(IFileReader):
 class FileReaderFactory:
     @staticmethod
     def create(file_path):
-        return AMSFileReader(file_path)
+        if file_path.endswith(".ams"):
+            return AMSFileReader(file_path)
+        raise ValueError("Invalid file format. Only 'ams' files are supported.")
+

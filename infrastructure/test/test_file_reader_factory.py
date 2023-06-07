@@ -12,7 +12,7 @@ def test_ams_file_reader(mock_file_content):
 
 
 def test_file_reader_factory(mock_file_content):
-    file_reader = FileReaderFactory.create("dummy_file_path")
+    file_reader = FileReaderFactory.create("dummy_file_path.ams")
     assert isinstance(file_reader, AMSFileReader)
 
 
