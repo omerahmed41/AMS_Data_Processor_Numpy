@@ -1,0 +1,84 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the source code from the repository
+                checkout scm
+            }
+        }
+
+        stage('Setup') {
+            steps {
+                // Set up Python environment
+                sh 'python -m venv venv'
+                sh 'source venv/bin/activate'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Lint') {
+            steps {
+                // Run linter to check code style and quality
+                sh 'pip install pylint'
+                sh 'pylint --disable=C0114,C0116 your_python_file.py'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run tests using a test framework like pytest
+                sh 'pip install pytest'
+                sh 'pytest'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the project (if applicable)
+                sh 'python setup.py build'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                // Create a distributable package (e.g., wheel, sdist)
+                sh 'python setup.py sdist bdist_wheel'
+            }
+        }
+
+        stage('Publish') {
+            steps {
+                // Publish the package to a package repository (e.g., PyPI)
+                sh 'pip install twine'
+                sh 'twine upload dist/*'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up artifacts or perform cleanup tasks
+            sh 'rm -rf venv'
+            sh 'rm -rf dist'
+        }
+
+        success {
+            // Send notifications or trigger downstream jobs upon success
+            echo 'Build succeeded! Sending email notification...'
+            // Send email notification using the Email extension plugin
+            emailext body: 'Build succeeded. Package published.',
+                     subject: 'Build Successful', to: 'developer@example.com'
+        }
+
+        failure {
+            // Send notifications or perform recovery tasks upon failure
+            echo 'Build failed! Sending Slack notification...'
+            // Send Slack notification using the Slack Notification plugin
+            slackSend channel: '#build-notifications',
+                      color: 'danger',
+                      message: 'Build failed for Python project.'
+        }
+    }
+}
