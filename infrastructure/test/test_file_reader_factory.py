@@ -11,7 +11,7 @@ def test_ams_file_reader(mock_file_content):
         assert content == mock_file_content
 
 
-def test_file_reader_factory(mock_file_content):
+def test_file_reader_factory():
     file_reader = FileReaderFactory.create("dummy_file_path.ams")
     assert isinstance(file_reader, AMSFileReader)
 
@@ -20,4 +20,3 @@ def test_file_not_found():
     with pytest.raises(FileNotFoundError):
         file_reader = AMSFileReader("non_existent_file_path")
         file_reader.read()
-

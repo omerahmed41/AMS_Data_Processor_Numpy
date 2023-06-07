@@ -9,10 +9,10 @@ class OutputWriter:
             os.makedirs(output_dir)
 
     def write_html_table(self, analysis_array, header, output_filename):
-        df = pd.DataFrame(analysis_array, columns=header)
-        html = df.to_html()
+        data_frame = pd.DataFrame(analysis_array, columns=header)
+        html = data_frame.to_html()
 
         output_file_path = os.path.join(self.output_dir, output_filename)
-        with open(output_file_path, "w") as file:
+        with open(output_file_path, "w",  encoding='utf-8') as file:
             file.write(html)
         print(f"Results have been written to {output_file_path}.")

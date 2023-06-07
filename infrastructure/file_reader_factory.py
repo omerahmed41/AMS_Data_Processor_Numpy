@@ -13,7 +13,7 @@ class AMSFileReader(IFileReader):
         self.content = ""
 
     def read(self):
-        with open(self.file_path, 'r') as file:
+        with open(self.file_path, 'r', encoding='utf-8') as file:
             self.content = file.read()
         return self.content
 
@@ -24,4 +24,3 @@ class FileReaderFactory:
         if file_path.endswith(".ams"):
             return AMSFileReader(file_path)
         raise ValueError("Invalid file format. Only 'ams' files are supported.")
-

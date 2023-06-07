@@ -1,5 +1,5 @@
-from app.ams_data_processor import main
 import argparse
+from app.ams_data_processor import main
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='AMS file processing')
