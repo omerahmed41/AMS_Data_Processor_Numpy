@@ -1,0 +1,62 @@
+python programming test
+
+Prerequisite:
+1. Python 3 with following packages:
+ - recommended pandas(numpy) however it is not a must have
+ - unittests installed
+ - pylint
+
+The following are assumptions and definitions that limit the scope of the task: 
+1. Available Memory: There is enough memory to store the whole content of the file. 
+2. The final solution needs to support only provided file formats, whereas it should be open for extension with possible another formats
+3. 'valid numerical value' stands for a numerical value, which is not NaN, nor INF
+
+Background
+*.ams files contain the AMS measurement data. They consist of following sections:
+1. Configuration - this section is mandatory
+2. Data - this section is optional and depends if the result data has been harvested. The data section will contain the following subsections
+- Blocks
+- Analyses
+- Batch
+3. The beginning of each of the subsection, is marked with '# <markup>', like '# Analyses' of '# Blocks'  
+
+Implementation 
+Provided input files, your task is to implement part of the file processing engine, which is able to process the 'analyses' sub-section of  data (results) from the input file.
+
+Following are the task specification:
+1. Provide command line application, which requires user to provide following input arguments:
+ - File path of the *.ams measurement file
+ - Indication of the math formula to be applied to the data records
+2. The solution is able to parse user selected input file and 
+3. The application should process Analyses data and do the following
+a) Obtain the Analyses records form the input file
+ - If analyses records do not exist, like in c14_settings.ams, the application needs to handle the scenario gracefully
+b) Processes every 2nd row (whether odd or even) and for valid numerical values apply the selected mathamatical operation
+c) Each formula is applied to a singular cell, the following formulas need to be supported:
+ - Sum: cell_value + (0.01 * cell_value)
+ - Division: 1 / cell_value
+ - Multiplication: cell_value * cell_value* 0.2
+ - Square root: sqrt(cell_value)
+ - Subtraction: cell_value - (0.01 * cell_value)
+ - Natural logarithm : ln(cell_value)
+d) Cells, where the formula is applied need to be converted to string values, and the content needs to be change as follows:
+ - Sum:  '++' + <numerical value> + '++', e.g. '++5.43++'
+ - Division:  '//' + <numerical value> + '//', e.g. '//5.43//'
+ - Multiplication:  '**' + <numerical value> + '**', e.g. '**5.43**'
+ - Square root:  '##' + <numerical value> + '##', e.g. '##5.43##'
+ - Subtraction:  '--' + <numerical value> + '--', e.g. '--5.43--'
+ - Natural logarithm:  '..' + <numerical value> + '..', e.g. '..5.43..'
+e) As the output the application should write the Analyses data (all records) as a html file (as a table)
+
+Test Cases 
+1. Provide unit tests documenting and proving the code works
+ - mock the dependencies
+ - Cover any edge conditions 
+
+Deliverables:
+1. Please return deliverables as electronic source code files (Zipped) in the reply. Please do not include input/output nor *.pyc files. 
+2. The source code files should successfully lint-ed with pylint
+
+Note: if you don't have favourite IDE, you can use MS Code. The final solution should comply with python styleguides (see PEP 8).
+
+As a final note, please follow the instructions and do the work to an industry standard level (SOLID, GOF)
