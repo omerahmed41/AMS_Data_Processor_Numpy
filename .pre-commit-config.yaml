@@ -1,0 +1,22 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: debug-statements
+
+  - repo: https://github.com/psf/black
+    rev: 21.9b0
+    hooks:
+      - id: black
+        language_version: python3.9
+
+  - repo: https://github.com/PyCQA/pylint
+    rev: pylint-2.11.1
+    hooks:
+      - id: pylint
+        args:
+          - --disable=C0114  # Disable missing module docstring warning
+          - --disable=C0116  # Disable missing function or method docstring warning
