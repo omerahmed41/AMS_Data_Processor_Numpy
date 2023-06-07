@@ -21,6 +21,10 @@ def main(file_path, formula, output_dir):
         output_writer = OutputWriter(output_dir)
         output_writer.write_html_table(analysis_array, header, 'analyses_table_old_data.html')
         output_writer.write_html_table(modified_data, header, 'analyses_table_updated_data.html')
+
+    except FileNotFoundError as e:
+        print(f"FileNotFoundError: {str(e)}")
+
     except ValueError as e:
-        print(f"Error: {str(e)}")
+        print(f"ValueError: {str(e)}")
 
