@@ -7,3 +7,9 @@ pylint:
 
 setup:
 	pip install -r requirements_dev.txt && pip install -r requirements.txt
+
+profile:
+	python profiler.py  /Users/omerSuliman/Downloads/ams_data_processor/inputs/c14.ams  sum  output
+
+profile-graph:
+	pydeps ams_data_processor.py
