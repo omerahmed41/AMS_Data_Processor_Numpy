@@ -32,6 +32,22 @@ To run the AMS Data Processor, use the following command-line syntax:
 
 Please note that the above command assumes the script name is `ams_data_processor.py`, the input file is located in the provided path.
 
+## Technology Stack & Features:
+* Panda.
+* Numpy.
+* cProfile.
+* Dependency graph.
+* pylint.
+* Pre-commit.
+* test coverage report.
+* docker with Docker compose.
+* makefile.
+* Logs.
+* Jenkins CI/CD Pipeline.
+* kubernetes.
+* Design patterns (Pub-Sub, Command, Repository, Singleton).
+* layer architecture (DDD).
+
 ## DDD and Layer Architecture 
 I followed the Domain Driven Design with the Layer archtitcaure,
 run `make profile-graph-cluster`to see the Architecture grapg
