@@ -50,7 +50,8 @@ Please note that the above command assumes the script name is `ams_data_processo
 
 ## DDD and Layer Architecture 
 I followed the Domain Driven Design with the Layer archtitcaure,
-run `make profile-graph-cluster`to see the Architecture grapg
+run `make profile-graph-cluster`to see the Architecture graph.
+
 ![profile_graph_cluster](https://github.com/omerahmed41/AMS_Data_Processor_Numpy/assets/15717941/77e7498e-05fd-4d78-8e5f-e95b0098ce55)
 
 
