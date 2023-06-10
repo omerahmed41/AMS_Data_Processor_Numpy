@@ -16,3 +16,6 @@ profile-graph:
 
 profile-graph-cluster:
 	pydeps ams_data_processor.py --max-bacon 3 --reverse --cluster -o profile_graph_cluster.svg
+
+documentations:
+	sphinx-build -b html . docs/html
