@@ -4,9 +4,8 @@ This module provides functionality for processing AMS files.
 """
 from domain.ams_processor import AMSProcessor
 from domain.data_modifier import DataModifier
+from domain import io_handler
 from domain.operations import OperationFactory
-from infrastructure.file_reader_factory import FileReaderFactory
-from infrastructure.output_writer import OutputWriter
 
 
 def main(file_path, formula, output_dir):
@@ -16,8 +15,7 @@ def main(file_path, formula, output_dir):
         This function reads the input file, processes the data, and generates output files.
         """
     try:
-        file_reader = FileReaderFactory.create(file_path)
-        content = file_reader.read()
+        content = io_handler.read_file(file_path)
 
         ams_processor = AMSProcessor(content)
         analyses_data = ams_processor.extract_analyses_data()
@@ -27,9 +25,7 @@ def main(file_path, formula, output_dir):
         data_modifier = DataModifier(operation)
         modified_data = data_modifier.modify(analysis_array)
 
-        output_writer = OutputWriter(output_dir)
-        output_writer.write_html_table(analysis_array, header, 'analyses_table_old_data.html')
-        output_writer.write_html_table(modified_data, header, 'analyses_table_updated_data.html')
+        io_handler.print_to_html(output_dir, analysis_array, modified_data, header)
 
     except FileNotFoundError as file_not_found_error:
         print(f"FileNotFoundError: {str(file_not_found_error)}")
