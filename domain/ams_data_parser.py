@@ -8,7 +8,7 @@ import re
 import numpy as np
 
 
-class AMSProcessor:
+class AMSDataParser:
     def __init__(self, content):
         self.content = content
 

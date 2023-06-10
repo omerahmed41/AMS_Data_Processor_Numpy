@@ -2,7 +2,7 @@
 This module provides functionality for processing AMS files.
 
 """
-from domain.ams_processor import AMSProcessor
+from domain.ams_data_parser import AMSDataParser
 from domain.data_modifier import DataModifier
 from domain import io_handler
 from domain.operations import OperationFactory
@@ -17,7 +17,7 @@ def main(file_path, formula, output_dir):
     try:
         content = io_handler.read_file(file_path)
 
-        ams_processor = AMSProcessor(content)
+        ams_processor = AMSDataParser(content)
         analyses_data = ams_processor.extract_analyses_data()
         header, analysis_array = ams_processor.parse_analyses_data(analyses_data)
 
